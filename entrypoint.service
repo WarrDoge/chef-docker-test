@@ -1,0 +1,11 @@
+[Unit]
+Description=starts entrypoint script
+
+[Service]
+User=root
+WorkingDirectory=/
+ExecStart=/bin/bash /entrypoint.sh
+Restart=no
+
+[Install]
+WantedBy=multi-user.target

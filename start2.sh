@@ -1,1 +1,0 @@
-docker build ./ --rm -t chef-server-core && docker run --privileged -ti -v /sys/fs/cgroup:/sys/fs/cgroup chef-server-core /usr/sbin/init
