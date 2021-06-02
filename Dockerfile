@@ -15,10 +15,12 @@ VOLUME [ "/sys/fs/cgroup" ]
 RUN set -x \
     && rpm -Uvh https://packages.chef.io/files/stable/chef-server/14.4.4/el/7/chef-server-core-14.4.4-1.el7.x86_64.rpm
 
+RUN yum install which -y && yum install crontabs -y
+
 # Changes listen_adress to 127.0.0.1
 RUN sed -i "s/default\['private_chef'\]\['postgresql'\]\['listen_address'\].*/default['private_chef']['postgresql']['listen_address'] = '127.0.0.1'/" /opt/opscode/embedded/cookbooks/private-chef/attributes/default.rb
 
-EXPOSE 443
+EXPOSE 443 80
 
 COPY chef-server.rb /etc/opscode
 COPY entrypoint.sh /
